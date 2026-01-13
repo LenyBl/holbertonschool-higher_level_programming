@@ -7,9 +7,7 @@ def islower(c):
 	Returns:
 		bool: True if c is lowercase, False otherwise.
 	"""
-	if 'a' <= c <= 'z':
+	if 97 <= ord(c) <= 122:
 		return True
-	elif c == '':
-		return False
 	else:
 		return False
