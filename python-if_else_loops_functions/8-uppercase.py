@@ -5,7 +5,8 @@ def uppercase(str):
     Args:
         c (str): A single character string.
     Returns:
-        str: The uppercase equivalent if c is lowercase, else returns c unchanged.
+        str: The uppercase equivalent if c is lowercase, 
+        else returns c unchanged.
     """
     for c in str:
         print("{}".format(
