@@ -9,7 +9,7 @@ def islower(c):
 	"""
 	if 'a' <= c <= 'z':
 		return True
-	elif c == "":
+	elif c == '':
 		return False
 	else:
 		return False
