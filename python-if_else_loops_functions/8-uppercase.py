@@ -8,6 +8,6 @@ def uppercase(c):
         str: The uppercase equivalent if c is lowercase, else returns c unchanged.
     """
     if 97 <= ord(c) <= 122:
-        print(chr(ord(c) - 32))
+        print("{}".format(chr(ord(c) - 32)))
     else:
-        print(c)
+        print("{}".format(c))
