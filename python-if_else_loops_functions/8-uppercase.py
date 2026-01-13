@@ -9,6 +9,6 @@ def uppercase(c):
     """
     for i in (c):
         if 97 <= ord(i) <= 122:
-            return chr(ord(i) - 32)
+            print("{}".format(chr(ord(i) - 32)), end="")
         else:
-            return i
+            print("{}".format(i), end="")
