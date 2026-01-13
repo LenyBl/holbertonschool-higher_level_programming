@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def uppercase(c):
+def uppercase(str):
     """Convert a lowercase character to uppercase.
 
     Args:
