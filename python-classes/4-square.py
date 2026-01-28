@@ -1,61 +1,54 @@
 #!/usr/bin/python3
-"""
-This module defines a Square class with size validation,
-an area method, and property getters and setters.
+"""Simple square module.
+
+This module contains the definition of the Square class,
+which keeps the size of a square in a private attribute.
 """
 
 
 class Square:
-    """
-    Represents a square with size validation, area calculation,
-    and property accessors.
+    """Represents a square.
+
+    This class stores the size of the square in a private attribute.
+
     Attributes:
         __size (int): The size of the square.
     """
+
     def __init__(self, size=0):
-        """
-        Initialize a Square instance with a given size.
+        """Initializes a new Square.
+
         Args:
-            size (int): The size of the square (default is 0).
-            Raises:
-                TypeError: If size is not an integer.
-                ValueError: If size is negative.
+            size (int, optional): The size of the square. Defaults to 0.
         """
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = size
+        self.size = size
 
     def area(self):
-        """
-        Calculate and return the area of the square.
+        """Return the area of the square.
+
         Returns:
-            int: The area of the square.
+            int: The current area of the square.
         """
-        return self.__size * self.__size
+        return (self.__size ** 2)
 
     @property
     def size(self):
-        """
-        Get the size of the square.
-        Returns:
-            int: The size of the square.
-        """
-        return self.__size
+        """int: Retrieves the size of the square."""
+        return (self.__size)
 
     @size.setter
     def size(self, value):
-        """
-        Set the size of the square with validation.
+        """Sets the size of the square.
+
         Args:
             value (int): The new size of the square.
+
         Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is negative.
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
         """
         if not isinstance(value, int):
-            raise TypeError("value must be an integer")
+            raise TypeError("size must be an integer")
         if value < 0:
-            raise ValueError("value must be >= 0")
+            raise ValueError("size must be >= 0")
         self.__size = value
