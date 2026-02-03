@@ -1,0 +1,39 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+>>> bg = BaseGeometry()
+>>> print(bg.area())
+Traceback (most recent call last):
+    ...
+NotImplementedError: area() is not implemented
+
+>>> print(bg.integer_validator("width", 10))
+>>> print(bg.integer_validator("height", -5))
+Traceback (most recent call last):
+    ...
+ValueError: height must be a positive integer
+
+>>> print(bg.integer_validator("size", "10"))
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+>>> print(isinstance(bg, BaseGeometry))
+True
+
+>>> print(issubclass(BaseGeometry, object))
+True
+
+>>> print(hasattr(BaseGeometry, 'area'))
+True
+
+>>> print(hasattr(BaseGeometry, 'integer_validator'))
+True
+
+>>> print(callable(getattr(BaseGeometry, 'area')))
+True
+
+>>> print(callable(getattr(BaseGeometry, 'integer_validator')))
+True
+
+>>> print(bg.integer_validator.__doc__)
+Validate that a value is a positive integer.
