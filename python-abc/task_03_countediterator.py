@@ -38,3 +38,11 @@ class CountedIterator:
         """
         self._count += 1
         return next(self._iterable)
+
+    def __iter__(self):
+        """
+        Return the iterator object itself.
+        returns:
+            CountedIterator: The iterator object.
+        """
+        return self
