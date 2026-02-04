@@ -57,11 +57,11 @@ class Rectangle(Shape):
         return 2 * (self.width + self.height)
 
 
-def shape_info(obj):
+def shape_info(shape):
     """Prints the area and perimeter of a shape object.
 
     Args:
-        obj (Shape): An instance of a class that inherits from Shape.
+        shape (Shape): An instance of a class that inherits from Shape.
     """
-    print(f"Area: {obj.area()}")
-    print(f"Perimeter: {obj.perimeter()}")
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
