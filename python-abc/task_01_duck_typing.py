@@ -2,6 +2,8 @@
 """
 Module defining an abstract base class Shape with abstract methods area
 and perimeter.
+It also includes Circle and Rectangle classes that implement these methods,
+and a function shape_info that prints the area and perimeter of a given shape.
 """
 
 from abc import ABC, abstractmethod
