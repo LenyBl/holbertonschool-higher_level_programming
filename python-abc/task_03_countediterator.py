@@ -1,48 +1,39 @@
 #!/usr/bin/python3
-"""
-Module defining a CountedIterator class that wraps an iterable
-and counts the number of iterations.
-"""
+"""Module that provides a counted iterator for tracking iteration progress."""
 
 
 class CountedIterator:
-    """
-    An iterator that counts the number of iterations.
-    Wraps around any iterable and provides a method to get the count
-    of iterations performed.
-    """
-    def __init__(self, iterable):
+    """An iterator wrapper that keeps track of the number of items iterated."""
+
+    def __init__(self, iterator):
+        """Initialize the CountedIterator with an iterable and reset counter.
+
+        Args:
+            iterator: An iterable object to be wrapped.
         """
-        Initialize the CountedIterator with an iterable.
-        args:
-            iterable: An iterable to wrap.
-        """
-        self._iterable = iter(iterable)
-        self._count = 0
+        self.__iterator = iter(iterator)
+        self.__counter = 0
 
     def get_count(self):
+        """Return the number of items that have been iterated so far.
+
+        Returns:
+            int: The count of items fetched from the iterator.
         """
-        Get the number of iterations performed.
-        returns:
-            int: The number of iterations.
-        """
-        return self._count
+        return self.__counter
 
     def __next__(self):
-        """
-        Get the next item from the iterable and increment the count.
-        returns:
-            The next item from the iterable.
-        raises:
-            StopIteration: When the iterable is exhausted.
-        """
-        self._count += 1
-        return next(self._iterable)
+        """Fetch the next item from the iterator and increment the counter.
 
-    def __iter__(self):
+        Returns:
+            The next item from the wrapped iterator.
+
+        Raises:
+            StopIteration: When the iterator is exhausted.
         """
-        Return the iterator object itself.
-        returns:
-            CountedIterator: The iterator object.
-        """
-        return self
+        try:
+            self.__counter += 1
+            return next(self.__iterator)
+        except StopIteration:
+            self.__counter -= 1
+            raise StopIteration
