@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-
-from abc import ABC, abstractmethod
 """
 Module defining an abstract base class Animals
 with an abstract method sound.
 """
+from abc import ABC, abstractmethod
 
 
 class Animals(ABC):
