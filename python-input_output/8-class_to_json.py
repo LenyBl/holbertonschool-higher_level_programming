@@ -10,7 +10,12 @@ import json
 
 def class_to_json(obj):
     """
-    Returns the dictionary description with simple data structure
-    for JSON serialization of an object.
+    Returns the dictionary description with simple data structure for JSON
+    serialization of an object.
+    Args:
+        obj: The object to be serialized.
+    Returns:
+        A dictionary representation of the object suitable for JSON
+        serialization.
     """
     return obj.__dict__
