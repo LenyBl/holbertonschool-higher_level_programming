@@ -37,7 +37,6 @@ class CustomObject:
         Args:
         filename (str): The name of the file to save the serialized object.
         """
-        import pickle
         with open(filename, 'wb') as file:
             pickle.dump(self, file)
 
