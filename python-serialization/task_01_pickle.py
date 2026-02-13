@@ -12,21 +12,43 @@ class CustomObject:
     serialization and deserialization.
     """
     def __init__(self, name, age, is_student):
+        """
+        Initializes the CustomObject with the given attributes.
+        Args:
+            name (str): The name of the object.
+            age (int): The age of the object.
+            is_student (bool): Whether the object is a student or not.
+        """
         self.name = name
         self.age = age
         self.is_student = is_student
 
     def display(self):
+        """
+        Displays the attributes of the CustomObject.
+        """
         print(f"Name: {self.name}")
         print(f"Age: {self.age}")
         print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
+        """
+        Serializes the CustomObject and saves it to a file using pickle.
+        Args:
+        filename (str): The name of the file to save the serialized object.
+        """
         import pickle
         with open(filename, 'wb') as file:
             pickle.dump(self, file)
 
     @classmethod
     def deserialize(cls, filename):
+        """
+        Deserializes a CustomObject from a file using pickle.
+        Args:
+            filename (str): The name of the file to load the serialized object from.
+        Returns:
+            CustomObject: The deserialized CustomObject instance.
+        """
         with open(filename, 'rb') as file:
             return pickle.load(file)
