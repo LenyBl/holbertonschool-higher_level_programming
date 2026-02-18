@@ -48,7 +48,7 @@ def fetch_and_save_posts():
             print("Status Code: None")
             return
         with open("posts.csv", "w", newline="", encoding="utf-8") as csvfile:
-            fieldnames = ["userId", "id", "title", "body"]
+            fieldnames = ["id", "title", "body"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for post in posts:
