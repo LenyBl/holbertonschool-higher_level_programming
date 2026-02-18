@@ -8,7 +8,7 @@ import json
 from http import HTTPStatus
 
 
-class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
+class MyRequestHandler(http.server.BaseHTTPRequestHandler):
     """
     A request handler class that handles GET requests for specific paths.
     """
