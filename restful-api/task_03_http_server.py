@@ -3,6 +3,7 @@
 Module: task_03_http_server
 Description: A simple HTTP server that responds to specific GET requests.
 """
+
 import http.server
 import json
 from http import HTTPStatus
@@ -18,40 +19,55 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
 
         if self.path == "/":
             self.send_response(HTTPStatus.OK)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            message = "Hello, this is a simple API!"
-            self.wfile.write(message.encode("utf-8"))
+            self.wfile.write(
+                b"Hello, this is a simple API!"
+            )
+
         elif self.path == "/data":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
             self.end_headers()
+
             data = {
                 "name": "John",
                 "age": 30,
-                "city": "New York",
+                "city": "New York"
             }
-            json_data = json.dumps(data)
-            self.wfile.write(json_data.encode("utf-8"))
+
+            self.wfile.write(
+                json.dumps(data).encode("utf-8")
+            )
+
         elif self.path == "/status":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            status = {
-                "status": "OK",
-                "message": "Server is running",
-            }
-            json_status = json.dumps(status)
-            self.wfile.write(json_status.encode("utf-8"))
+
+            status = {"status": "OK"}
+
+            self.wfile.write(
+                json.dumps(status).encode("utf-8")
+            )
+
         elif self.path == "/info":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
             self.end_headers()
+
             info = {
                 "version": "1.0",
-                "description": "A simple API built with http.server",
+                "description":
+                    "A simple API built with http.server"
             }
-            json_info = json.dumps(info)
-            self.wfile.write(json_info.encode("utf-8"))
+
+            self.wfile.write(
+                json.dumps(info).encode("utf-8")
+            )
+
         else:
-            self.send_error(HTTPStatus.NOT_FOUND, "Not Found")
+            self.send_response(HTTPStatus.NOT_FOUND)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"Endpoint not found")
