@@ -20,7 +20,11 @@ def fetch_and_print_posts():
 
     print(f"Status Code: {request.status_code}")
     if request.status_code == 200:
-        posts = request.json()
+        try:
+            posts = request.json()
+        except ValueError:
+            print("Status Code: None")
+            return
         for post in posts:
             print(post["title"])
 
@@ -38,7 +42,11 @@ def fetch_and_save_posts():
 
     print(f"Status Code: {request.status_code}")
     if request.status_code == 200:
-        posts = request.json()
+        try:
+            posts = request.json()
+        except ValueError:
+            print("Status Code: None")
+            return
         with open("posts.csv", "w", newline="", encoding="utf-8") as csvfile:
             fieldnames = ["userId", "id", "title", "body"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
