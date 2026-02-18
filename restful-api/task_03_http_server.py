@@ -4,6 +4,7 @@ Module: task_03_http_server
 Description: A simple HTTP server that responds to specific GET requests.
 """
 import http.server
+from http.server import HTTPServer
 import json
 from http import HTTPStatus
 
@@ -22,6 +23,7 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             message = "Hello, this is a simple API!"
             self.wfile.write(message.encode("utf-8"))
+
         elif self.path == "/data":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
@@ -33,6 +35,7 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
             }
             json_data = json.dumps(data)
             self.wfile.write(json_data.encode("utf-8"))
+
         elif self.path == "/status":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
@@ -43,6 +46,7 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
             }
             json_status = json.dumps(status)
             self.wfile.write(json_status.encode("utf-8"))
+
         elif self.path == "/info":
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-type", "application/json")
@@ -53,5 +57,23 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
             }
             json_info = json.dumps(info)
             self.wfile.write(json_info.encode("utf-8"))
+
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not Found")
+
+
+def run(server_class=HTTPServer, handler_class=MyRequestHandler, port=8000):
+    server_address = ("", port)
+    httpd = server_class(server_address, handler_class)
+    print(f"Serving on http://localhost:{port}")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+        print("\nServer stopped.")
+
+
+if __name__ == "__main__":
+    run()
