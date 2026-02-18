@@ -43,5 +43,15 @@ class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
             }
             json_status = json.dumps(status)
             self.wfile.write(json_status.encode("utf-8"))
+        elif self.path == "/info":
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            info = {
+                "version": "1.0",
+                "description": "A simple API built with http.server",
+            }
+            json_info = json.dumps(info)
+            self.wfile.write(json_info.encode("utf-8"))
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not Found")
