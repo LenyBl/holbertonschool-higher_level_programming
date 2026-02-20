@@ -1,27 +1,12 @@
 from flask import Flask, jsonify, request
-"""
-Task 4: Flask API
-Create a simple Flask API with the following endpoints:
-- GET /: Returns a welcome message.
-- GET /data: Returns a JSON object with some sample data.
-- GET /status: Returns a status message.
-- GET /username/<username>: Returns a JSON object with user information based
-on the provided username.
-- POST /add_user: Accepts a JSON object with user information and adds it to
-the existing data. Returns a success message upon successful addition.
-"""
 
 app = Flask(__name__)
 
 users = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}}
 
 
-@app.route("/", methods=['GET'])
+@app.route("/", methods=["GET"])
 def home():
-    """
-    Returns a welcome message.
-    :return: A string containing the welcome message.
-    """
     return "Welcome to the Flask API!"
 
 
@@ -47,9 +32,6 @@ def status():
 def getUsername(username):
     """
     Returns a JSON object with user information based on the provided username.
-    :param username: The username to look up.
-    :return: A JSON object containing user information or an error message if
-    the user is not found.
     """
     user_info = users.get(username)
     if user_info:
