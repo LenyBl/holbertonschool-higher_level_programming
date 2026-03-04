@@ -1,3 +1,4 @@
+-- Write a SQL script that creates a database named hbtn_0d_usa and a table named cities.
 CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
 USE hbtn_0d_usa;
 -- Create a table named cities with three columns: id, name, and state_id.
@@ -7,7 +8,7 @@ USE hbtn_0d_usa;
 -- references the id column of the states table.
 CREATE TABLE IF NOT EXISTS cities (
     id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(256) NOT NULL,
     state_id INT NOT NULL,
+    name VARCHAR(256) NOT NULL,
     FOREIGN KEY (state_id) REFERENCES states(id)
 );
