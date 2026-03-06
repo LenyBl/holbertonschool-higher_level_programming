@@ -1,41 +1,20 @@
 #!/usr/bin/python3
-"""List all states from the database."""
-
+"""Script that filters states by name from hbtn_0e_0_usa database"""
 import MySQLdb
 import sys
 
-
-def main():
-    """Run the SQL query and print results."""
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_searched = sys.argv[4]
-
+if __name__ == "__main__":
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
     )
-
     cursor = db.cursor()
-
-    cursor.execute("""
-        SELECT * FROM states
-        WHERE name = '{}'
-        ORDER BY id ASC;
-        """.format(state_searched,))
-
-    states = cursor.fetchall()
-
-    for state in states:
-        print(state)
-
+    cursor.execute("SELECT * FROM states WHERE name = '{}' ORDER BY id ASC"
+                   .format(sys.argv[4]))
+    for row in cursor.fetchall():
+        print(row)
     cursor.close()
     db.close()
-
-
-if __name__ == "__main__":
-    main()
